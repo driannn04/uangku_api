@@ -1,9 +1,13 @@
 from flask import Flask
+from flask_cors import CORS  # <-- import CORS
 from config.database import engine, Base
 from routes.web import web
 import models.transaction_model, models.category_model, models.goal_model
 
 app = Flask(__name__)
+
+# Tambahkan ini supaya semua origin diizinkan
+CORS(app)
 
 # Buat tabel kalau belum ada
 Base.metadata.create_all(bind=engine)
